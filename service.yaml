@@ -4,7 +4,11 @@ kind: Service
 metadata:
   name: code-server-svc
 spec:
-  type: LoadBalancer # または NodePort
+  type: LoadBalancer
+  ipFamilyPolicy: PreferDualStack 
+  ipFamilies:
+    - IPv4
+    - IPv6
   ports:
     - port: 80
       targetPort: 8443
