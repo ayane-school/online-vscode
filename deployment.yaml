@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: code-server
+  template:
+    metadata:
+      labels:
+        app: code-server
+    spec:
+      containers:
+      - name: code-server
+        image: linuxserver/code-server:latest
+        ports:
+        - containerPort: 8443
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ
+          value: "Asia/Tokyo"
+        - name: PASSWORD
+          value: "admin123" # 実際はSecretを使うのがベター
+        volumeMounts:
+        - name: code-data
+          mountPath: /config
+      volumes:
+      - name: code-data
+        persistentVolumeClaim:
+          claimName: code-server-pvc
