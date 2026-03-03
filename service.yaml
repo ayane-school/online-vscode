@@ -4,8 +4,8 @@ kind: Service
 metadata:
   name: code-server-svc
 spec:
-  type: LoadBalancer
-  ipFamilyPolicy: RequireDualStack 
+  type: NodeIP
+  ipFamilyPolicy: PreferDualStack 
   ipFamilies:
     - IPv4
     - IPv6
