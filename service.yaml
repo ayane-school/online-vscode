@@ -5,7 +5,7 @@ metadata:
   name: code-server-svc
 spec:
   type: LoadBalancer
-  ipFamilyPolicy: PreferDualStack 
+  ipFamilyPolicy: RequireDualStack 
   ipFamilies:
     - IPv4
     - IPv6
